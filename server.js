@@ -27,11 +27,13 @@ app.get("/api/hello", function (req, res) {
 
 // whoami endpoint
 app.get('/api/whoami',(req, res) => {
+  
   let whoami = {
     'ipaddress': req.ip,
-    'langauage': req['headers']['accept-language'],
+    'language': req['headers']['accept-language'] === undefined ? 'en-US,en;q=0.5' : req['headers']['accept-language'],
     'software': req['headers']['user-agent']
   };
+
 
   res.json(whoami)
 })
